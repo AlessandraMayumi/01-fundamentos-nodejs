@@ -5,7 +5,8 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "stream": "node streams/fundamentos.js"
   },
   "repository": {
     "type": "git",
