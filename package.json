@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "stream": "node streams/fundamentos.js"
+    "stream": "node streams/fundamentals.js"
   },
   "repository": {
     "type": "git",
