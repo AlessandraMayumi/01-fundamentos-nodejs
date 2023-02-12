@@ -11,9 +11,10 @@ const server = http.createServer(async (req, res) => {
         return r.method === method && r.path.test(url);
     })
 
-    if(route) {
+    if (route) {
         const routeParams = req.url.match(route.path);
-        console.log(routeParams);
+        req.params = { ...routeParams.groups };
+
         return route.handler(req, res);
     }
 
