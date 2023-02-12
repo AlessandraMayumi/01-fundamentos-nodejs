@@ -12,11 +12,15 @@ class OneToHundredStream extends Readable {
                 const buf = Buffer.from(String(i))
                 this.push(buf)
             }
-        }, 1000);
+        }, 10);
     }
 }
 
 fetch('http://localhost:3334', {
     method: 'POST',
     body: new OneToHundredStream(),
+}).then(response => {
+    response.text()
+}).then(data => {
+    console.log({ data });
 })
