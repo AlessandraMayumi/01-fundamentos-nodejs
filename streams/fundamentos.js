@@ -5,10 +5,7 @@
  * 100s tempo de download
  */
 
-// process.stdin
-//     .pipe(process.stdout)
-
-import { Readable, Writable } from 'node:stream';
+import { Readable, Writable, Transform } from 'node:stream';
 
 
 class OneToHundredStream extends Readable {
@@ -33,6 +30,18 @@ class MultipyByTenStream extends Writable {
     }
 }
 
-new OneToHundredStream()
-    // .pipe(process.stdout)
+
+class InverseNumberStream extends Transform {
+    _transform(chunk, encoding, callback) {
+        const transformed = Number(chunk.toString()) * -1;
+        const buf = Buffer.from(String(transformed));
+        callback(null, buf)
+    }
+}
+
+// process.stdin
+//     .pipe(process.stdout)
+
+new OneToHundredStream()    // .pipe(process.stdout)
+    .pipe(new InverseNumberStream())
     .pipe(new MultipyByTenStream())
